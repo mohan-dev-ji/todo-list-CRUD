@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css" />
+    <title>Todo List</title>
+</head>
+<body>
+    <div class="box" id="heading">
+        <h1>
+            <%= listTitle %>
+        </h1>
+    </div>
+    <div class="box">
+        <% for(let item of listItems){%>
+            <div class="item">
+                <!-- delete -->
+                 <form action="/delete" method="post">
+                    <button class="delete" name="deleteItemId" value="<%= item.id %>">Delete</button>
+                 </form>
+
+                <!-- title -->
+                 <p id="title<%=item.id%>">
+                    <%= item.title %>
+                 </p>
+
+                 <!-- edit -->
+                 <form class="edit" action="/edit" method="post">
+                    <input type="hidden" name="updatedItemId" value="<%= item.id %>">
+                    <input id="input<%=item.id%>" type="text" name="updatedItemTitle" value="<%= item.title %>" autocomplete="off"
+                    autofocus="true" hidden="true" />
+
+                    <button id="done<%=item.id%>" class="edit" type="submit" hidden>Done</button>
+                 </form>
+                    <button id="edit<%=item.id%>" class="edit" onclick="handler('<%=item.id%>')">Edit</button>
+
+
+            </div>
+        <% } %>
+
+        <!-- add -->
+         <form class="item" action="/add" method="post">
+            <input type="text" name="newItem" placeholder="New Item" autocomplete="off" autofocus="true" />
+            <button class="add" type="submit" name="list" value=<%= listTitle %>>+</button>
+         </form>
+
+    </div>
+    
+    <script>
+        function handler(id) {
+          document.getElementById("title" + id).setAttribute("hidden", true)
+          document.getElementById("edit" + id).setAttribute("hidden", true)
+          document.getElementById("done" + id).removeAttribute("hidden")
+          document.getElementById("input" + id).removeAttribute("hidden")
+        }
+    </script>
+</body>
+</html>

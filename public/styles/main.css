@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    min-height: 95vh;
+}
+
+html {
+    font-family: "helvetica neue";
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+p {
+    padding: 20px 0;
+}
+
+form {
+    margin-left: 20px;
+}
+
+input[type="text"] {
+    color: blue;
+    text-align: left;
+    top: 10px;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.delete {
+    margin-right: 20px;
+}
